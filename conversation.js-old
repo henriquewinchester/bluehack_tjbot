@@ -43,32 +43,19 @@ var questions = [
   ]
 ];
 
-var id = 0;
+var next = true;
+var i = 0;
 
 tj.listen(function(msg) {
 	console.log(msg);
 	if(msg.startsWith("hello")) {
-		tj.speak(questions[id][1]);
+		tj.speak(questions[0][1]);
 	}
 
 	if(msg.startsWith("okay")) {
 		console.log("okay");
-		const ENDPOINT = questions[id][0] + "?msg=" + msg;
-
-        	var fullUrl = BASEURL + ENDPOINT;
-
-       		request(fullUrl, function(error, response, body) {
-          		console.log(body);
-          		tj.speak(body);
-			id++;
-			if(id == questions.length)
-				tj.stopListening();
-		});
+		tj.stopListenning();
 	}
 });
 
-//let fn = (msg) => { console.log(msg) };
-
-
-//tj.listen(fn);
 
