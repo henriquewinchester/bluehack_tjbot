@@ -63,6 +63,9 @@ tj.listen(function(msg) {
 
        		request(fullUrl, function(error, response, body) {
           		console.log(body);
+			if(body.startsWith("Acertou")) {
+				tj.wave();
+			}
           		tj.speak(body).then(function() {
 				id++;
 				if(id == questions.length) {
