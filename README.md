@@ -9,9 +9,13 @@ Nele, as crianças poderão aprender com o TJ Bot independentemente dos pais ou 
 
 > Requisitos para montar seu TJ bot - https://ibmtjbot.github.io/
 
-## Como utilizar:
+## Como Executar:
 1. Clone ou download o repositório : https://github.com/henriquewinchester/bluehack_tjbot.git
 2. Entre no diretório bluehack_tjbot.
 3. Digite 'npm install'.
 4. Para executar, digite 'npm start'.
 5. Teste o Raspberry Pi.
+
+
+## Como Utilizar
+#[TODO]
