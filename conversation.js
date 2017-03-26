@@ -1,6 +1,6 @@
 var TJBot = require('tjbot'),
-    config = require('./config'),
-    request = require('request');
+config = require('./config'),
+request = require('request');
 
 // obtain our credentials from config.js
 var credentials = config.credentials;
@@ -12,10 +12,14 @@ const WORKSPACEID = config.conversationWorkspaceId;
 const BASEURL = "https://tjhackers-rednode.mybluemix.net/";
 
 // these are the hardware capabilities that TJ needs for this recipe
-var hardware = ['microphone', 'speaker'];
+var hardware = ['servo', 'microphone', 'speaker'];
 
 // turn on debug logging to the console
 var configuration = {
+    robot: {
+	gender: 'female',
+        name: 'Isabela'
+    },
     verboseLogging: true,
     listen: {
         language: 'pt-BR'
@@ -44,31 +48,29 @@ var questions = [
 ];
 
 var id = 0;
-
+tj.wave();
 tj.listen(function(msg) {
 	console.log(msg);
-	if(msg.startsWith("hello")) {
+	if(msg.startsWith("olá")) {
 		tj.speak(questions[id][1]);
 	}
 
-	if(msg.startsWith("okay")) {
-		console.log("okay");
+	if(msg.toLowerCase().startsWith("isabella")) {
+		console.log("Isabella");
 		const ENDPOINT = questions[id][0] + "?msg=" + msg;
 
         	var fullUrl = BASEURL + ENDPOINT;
 
        		request(fullUrl, function(error, response, body) {
           		console.log(body);
-          		tj.speak(body);
-			id++;
-			if(id == questions.length)
-				tj.stopListening();
+          		tj.speak(body).then(function() {
+				id++;
+				if(id == questions.length) {
+					tj.speak("Muito bem, até mais!").then(function() {
+					tj.stopListening();
+					});
+				}
+			});
 		});
 	}
 });
-
-//let fn = (msg) => { console.log(msg) };
-
-
-//tj.listen(fn);
-

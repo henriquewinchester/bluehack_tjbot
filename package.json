@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "request": "^2.81.0",
-    "tjbot": "0.0.10"
+    "tjbot": "1.1.0"
   },
   "main": "conversation.js",
   "homepage": "https://github.com/ibmtjbot/tjbot/tree/master/recipes/conversation",
